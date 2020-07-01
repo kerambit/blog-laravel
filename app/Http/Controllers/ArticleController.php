@@ -14,9 +14,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
-        $articlesList = 'BX is finally dead';
-        return view('articles/index')->with('message', $articlesList); //первый аргумент название переменной, второй - значение
+
+        $articlesList = Article::all();
+
+        return view('articles/index')->with('articles', $articlesList); //первый аргумент название переменной, второй - значение
     }
 
     /**
