@@ -14,10 +14,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
+        $articlesList = Article::paginate(5);
 
-        $articlesList = Article::all();
-
-        return view('articles/index')->with('articles', $articlesList); //первый аргумент название переменной, второй - значение
+        return view('articles/index')->with('articles', $articlesList);
     }
 
     /**
