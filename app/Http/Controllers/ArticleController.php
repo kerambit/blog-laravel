@@ -50,7 +50,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-
+        return view('articles/show')->with('article', $article);
     }
 
     /**
@@ -61,7 +61,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('articles/edit')->with('article', $article);
     }
 
     /**
@@ -73,7 +73,8 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $article->update($request->all());
+        return redirect('/articles/' . $article->id)->with('status', 'Article edited!');
     }
 
     /**
@@ -84,6 +85,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+
+        return redirect('/')->with('status', 'Article deleted!');
     }
 }
