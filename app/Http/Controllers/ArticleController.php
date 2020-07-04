@@ -37,15 +37,15 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = $request->validate([
-            'title' => 'required|max:45',
+        $validData = $request->validate([
+            'title' => 'required|max:45|unique:App\Article,title',
             'description' => 'required',
             'slug' => 'required|max:45',
         ]);
 
-        $article = Article::create($request->all());
+        $article = Article::create($validData);
 
-        return redirect('/articles')->with('status', 'Article created!');
+        return redirect(route('articles.index'))->with('status', 'Article created!');
     }
 
     /**
@@ -79,15 +79,15 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        $validator = $request->validate([
+        $validData = $request->validate([
             'title' => 'required|max:45',
             'description' => 'required',
             'slug' => 'required|max:45',
         ]);
 
-        $article->update($request->all());
+        $article->update($validData);
 
-        return redirect('/articles/' . $article->id)->with('status', 'Article edited!');
+        return redirect(route('articles.edit', $article))->with('status', 'Article edited!');
     }
 
     /**
@@ -100,6 +100,6 @@ class ArticleController extends Controller
     {
         $article->delete();
 
-        return redirect('/articles')->with('status', 'Article deleted!');
+        return redirect(route('articles.index'))->with('status', 'Article deleted!');
     }
 }

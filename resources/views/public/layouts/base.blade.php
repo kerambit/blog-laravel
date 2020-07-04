@@ -7,9 +7,9 @@
     <title>@yield('title') | {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    @stack('js')
+@stack('js')
 
-    <!-- Styles -->
+<!-- Styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
@@ -27,9 +27,6 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('articles.index') }}">Admin panel</a>
             </li>
-            <li class="nav-item">
-                <a class="btn btn-primary" href="{{ route('articles.create') }}" role="button">Create new article</a>
-            </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -37,10 +34,13 @@
         </form>
     </div>
 </nav>
-<div class="container-fluid">
-    <div class="col-12 col-lg-9 center">
-        @yield('content')
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6 offset-md-2">
+            @yield('content')
+        </div>
     </div>
 </div>
 </body>
 </html>
+

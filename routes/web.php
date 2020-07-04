@@ -13,12 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('articles', 'ArticleController')->names([
-    'index' => 'articles',
-    'store' => 'articles.store',
-    'create' => 'articles.create',
-    'show' => 'articles.show',
-    'update' => 'articles.update',
-    'destroy' => 'articles.destroy'
-]);
-Route::get('/', 'ArticleController@index')->name('index');
+Route::resource('admin/articles', 'ArticleController');
+
+Route::get('/', 'PublicController@index')->name('index');
+
+Route::get('/{article}', 'PublicController@show')->name('show');
