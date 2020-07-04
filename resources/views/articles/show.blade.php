@@ -22,9 +22,9 @@
                 <p class="card-text">{{ $article->description }}</p>
                 <span>{{ $article->slug }}</span>
                 <a class="btn btn-primary" href="{{ $article->id }}/edit" role="button">Edit</a>
-                <form action="/articles/{{ $article->id }}" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
+                <form action="{{ route('articles.destroy', $article->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
 
                     <button type="submit" class="btn btn-danger">
                         <i class="fa fa-trash"></i> Delete

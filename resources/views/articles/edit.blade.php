@@ -2,9 +2,10 @@
 @section('title', 'Edit article')
 
 @section('content')
-    <form action="/articles/{{ $article->id }}" method="POST">
-        {{ csrf_field() }}
-        {{ method_field('PATCH') }}
+    @include('includes.errors')
+    <form action="{{ route('articles.update', $article->id) }}" method="POST">
+        @csrf
+        @method('PATCH')
         <div class="form-group">
             <label for="articleInputTitle">Article title</label>
             <input type="text" id="articleInputTitle" name="title" class="form-control" placeholder="Title" value="{{ $article->title }}">

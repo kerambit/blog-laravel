@@ -2,8 +2,9 @@
 @section('title', 'Create new article')
 
 @section('content')
-    <form action="/articles" method="POST">
-        {{ csrf_field() }}
+    @include('includes.errors')
+    <form action="{{ route('articles.store') }}" method="POST">
+        @csrf
         <div class="form-group">
             <label for="articleInputTitle">Article title</label>
             <input type="text" id="articleInputTitle" name="title" class="form-control" placeholder="Title">
