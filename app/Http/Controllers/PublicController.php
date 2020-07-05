@@ -15,7 +15,7 @@ class PublicController extends Controller
     {
         $articlesList = Article::paginate(5);
 
-        return view('public/index')->with('articles', $articlesList);
+        return view('article.index')->with('articles', $articlesList);
     }
 
     /**
@@ -26,6 +26,6 @@ class PublicController extends Controller
      */
     public function show(Article $article)
     {
-        return view('public/show')->with('article', $article);
+        return view('article.show')->with('article', $article);
     }
 }

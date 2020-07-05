@@ -16,7 +16,7 @@ class ArticleController extends Controller
     {
         $articlesList = Article::paginate(5);
 
-        return view('articles/index')->with('articles', $articlesList);
+        return view('articles.index')->with('articles', $articlesList);
     }
 
     /**
@@ -26,7 +26,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles/create');
+        return view('articles.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class ArticleController extends Controller
 
         $article = Article::create($validData);
 
-        return redirect(route('articles.index'))->with('status', 'Article created!');
+        return redirect()->route('articles.index')->with('status', 'Article created!');
     }
 
     /**
@@ -56,7 +56,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view('articles/show')->with('article', $article);
+        return view('articles.show')->with('article', $article);
     }
 
     /**
@@ -67,7 +67,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('articles/edit')->with('article', $article);
+        return view('articles.edit')->with('article', $article);
     }
 
     /**
@@ -87,7 +87,7 @@ class ArticleController extends Controller
 
         $article->update($validData);
 
-        return redirect(route('articles.edit', $article))->with('status', 'Article edited!');
+        return redirect()->route('articles.edit', $article)->with('status', 'Article edited!');
     }
 
     /**
@@ -100,6 +100,6 @@ class ArticleController extends Controller
     {
         $article->delete();
 
-        return redirect(route('articles.index'))->with('status', 'Article deleted!');
+        return redirect()->route('articles.index')->with('status', 'Article deleted!');
     }
 }

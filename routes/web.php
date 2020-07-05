@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::resource('admin/articles', 'ArticleController');
+Route::group(['prefix' => 'admin'], function() {
+    Route::resource('articles', 'ArticleController');
+});
 
 Route::get('/', 'PublicController@index')->name('index');
 

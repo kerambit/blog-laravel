@@ -1,4 +1,4 @@
-@extends('public.layouts.base')
+@extends('article.layouts.base')
 @section('title')
     {{ $article->title }}
 @endsection
