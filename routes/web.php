@@ -19,3 +19,7 @@ Route::group(['prefix' => 'admin'], function() {
 Route::get('/', 'PublicController@index')->name('index');
 
 Route::get('/{article}', 'PublicController@show')->name('show');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
