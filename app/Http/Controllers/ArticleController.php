@@ -45,7 +45,9 @@ class ArticleController extends Controller
 
         $article = Article::create($validData);
 
-        return redirect()->route('articles.index')->with('status', 'Article created!');
+        return redirect()
+            ->route('articles.index')
+            ->with('status', 'Article created!');
     }
 
     /**
@@ -87,7 +89,9 @@ class ArticleController extends Controller
 
         $article->update($validData);
 
-        return redirect()->route('articles.edit', $article)->with('status', 'Article edited!');
+        return redirect()
+            ->route('articles.edit', $article)
+            ->with('status', 'Article edited!');
     }
 
     /**
@@ -100,6 +104,8 @@ class ArticleController extends Controller
     {
         $article->delete();
 
-        return redirect()->route('articles.index')->with('status', 'Article deleted!');
+        return redirect()
+            ->route('articles.index')
+            ->with('status', 'Article deleted!');
     }
 }
