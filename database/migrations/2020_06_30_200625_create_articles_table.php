@@ -19,6 +19,11 @@ class CreateArticlesTable extends Migration
             $table->text('description');
             $table->string('slug')->unique();
             $table->timestamps();
+            $table->unsignedInteger('category_id');
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

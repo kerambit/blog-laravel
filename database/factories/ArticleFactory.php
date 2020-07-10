@@ -10,5 +10,6 @@ $factory->define(Article::class, function (Faker $faker) {
         'title' => $faker->sentence(5),
         'description' => $faker->paragraph,
         'slug'  => $faker->slug,
+        'category_id' => $faker->randomDigitNot(0),
     ];
 });

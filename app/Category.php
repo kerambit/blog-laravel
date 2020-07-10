@@ -10,4 +10,12 @@ class Category extends Model
         'name',
         'slug',
     ];
+
+    /**
+     * Get the categories for the articles.
+     */
+    public function categories()
+    {
+        return $this->hasMany('App\Article');
+    }
 }

@@ -11,4 +11,12 @@ class Article extends Model
         'description',
         'slug',
     ];
+
+    /**
+     * Get the category for the article.
+     */
+    public function category()
+    {
+        return $this->OneToMany('App\Category');
+    }
 }

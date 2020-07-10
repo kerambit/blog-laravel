@@ -18,6 +18,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('articles', 'ArticleController');
 });
 
+Route::resource('categories', 'CategoryController');
+
 Route::get('/', 'PublicController@index')->name('index');
 
 Route::get('/{article}', 'PublicController@show')->name('show');
