@@ -14,7 +14,7 @@ class Category extends Model
     /**
      * Get the categories for the articles.
      */
-    public function categories()
+    public function articles()
     {
         return $this->hasMany('App\Article');
     }

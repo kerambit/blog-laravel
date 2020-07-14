@@ -19,6 +19,12 @@ class CreateCategoriesTable extends Migration
             $table->string('slug')->unique();
             $table->timestamps();
         });
+
+        Schema::table('articles', function (Blueprint $table) {
+            $table->foreignId('category_id')
+                ->constrained('categories')
+                ->onUpdate('cascade')->onDelete('cascade');
+        });
     }
 
     /**
