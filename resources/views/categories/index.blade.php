@@ -1,5 +1,5 @@
 @extends('article.layouts.base')
-@section('titlle', 'Categories')
+@section('title', 'Categories')
 
 @section('content')
     {{ $categories->links() }}
