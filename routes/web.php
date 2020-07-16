@@ -24,8 +24,8 @@ Route::get('/', 'PublicController@index')->name('index');
 
 Route::get('/{article}', 'PublicController@show')->name('show');
 
-Route::get('/category', 'CategoriesController@index')->name('indexCat');
+Route::get('/categories', 'CategoriesController@index')->name('categories.index');
 
-Route::get('/category/{category}', 'CategoriesController@show')->name('showCat');
+Route::get('/category/{category}', 'CategoriesController@show')->name('categories.show');
 
 Route::get('/home', 'HomeController@index')->name('home');

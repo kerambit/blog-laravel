@@ -11,6 +11,6 @@ $factory->define(Article::class, function (Faker $faker) {
         'title' => $faker->sentence(5),
         'description' => $faker->paragraph,
         'slug'  => $faker->slug,
-        'category_id' => factory(Category::Class),
+        'category_id' => factory(Category::Class)->create()->id,
     ];
 });
