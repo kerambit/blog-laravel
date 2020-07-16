@@ -19,13 +19,6 @@ class CreateCategoriesTable extends Migration
             $table->string('slug')->unique();
             $table->timestamps();
         });
-
-        Schema::table('articles', function (Blueprint $table) {
-            $table->foreignId('category_id')
-                ->nullable()
-                ->constrained('categories')
-                ->onUpdate('cascade')->onDelete('cascade');
-        });
     }
 
     /**
@@ -35,7 +28,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('categories');
     }
 }
