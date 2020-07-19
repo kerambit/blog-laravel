@@ -2,13 +2,11 @@
 @section('title', 'Categories')
 
 @section('content')
-    {{ $categories->links() }}
 
     <ul class="list-group">
         @foreach($categories as $category)
-            <li class="list-group-item">{{ $category->name }}</li>
+            <a href="{{ route('categories.show', $category->id) }}"><li class="list-group-item">{{ $category->name }}</li></a>
         @endforeach
     </ul>
 
-    {{ $categories->links() }}
 @endsection

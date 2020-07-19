@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Article;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -14,7 +15,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(10);
+        $categories = Category::all();
 
         return view('categories.index')->with('categories', $categories);
     }
@@ -27,6 +28,13 @@ class CategoriesController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $articles = Article::where('category_id', $category->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return view('categories.show')->with([
+           'articles' => $articles,
+           'category' => $category->name,
+        ]);
     }
 }
