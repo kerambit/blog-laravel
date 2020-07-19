@@ -44,7 +44,7 @@ class CategoryController extends Controller
             'slug' => 'required|max:45',
         ]);
 
-        $category = Category::create($validatedData);
+        Category::create($validatedData);
 
         return redirect()
             ->route('category.index')

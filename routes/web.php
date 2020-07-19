@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
-    Route::resource('articles', 'ArticleController');
-    Route::resource('category', 'CategoryController');
+Route::middleware('auth')->group(function() {
+    Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+        Route::resource('articles', 'ArticleController');
+        Route::resource('category', 'CategoryController');
+    });
 });
 
 Route::get('/categories', 'CategoriesController@index')->name('categories.index');

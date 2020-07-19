@@ -48,7 +48,7 @@ class ArticleController extends Controller
             'category_id' => 'required'
         ]);
 
-        $article = Article::create($validatedData);
+        Article::create($validatedData);
 
         return redirect()
             ->route('articles.index')
