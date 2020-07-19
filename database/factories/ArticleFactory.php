@@ -10,7 +10,7 @@ $factory->define(Article::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence(5),
         'description' => $faker->paragraph,
-        'slug'  => $faker->slug,
+        'slug'  => $faker->unique()->slug,
         'category_id' => function () {
             return factory(Category::Class)->create()->id;
         },

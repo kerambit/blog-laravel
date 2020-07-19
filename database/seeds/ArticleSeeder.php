@@ -11,6 +11,11 @@ class ArticleSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Article::class, 80)->create(['category_id' => null]);
+        factory(\App\Article::class, 80)->make(['category_id' => null])
+            ->each(function ($article) {
+                $category = \App\Category::inRandomOrder()->first();
+                $article->category_id = $category->id;
+                $article->save();
+            });
     }
 }
