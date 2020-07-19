@@ -23,8 +23,8 @@ Route::get('/categories', 'CategoriesController@index')->name('categories.index'
 
 Route::get('/categories/{category}', 'CategoriesController@show')->name('categories.show');
 
-Route::get('/', 'PublicController@index')->name('index');
+Route::get('/', 'ArticleController@index')->name('article.index');
 
-Route::get('/{article}', 'PublicController@show')->name('show');
+Route::get('/articles/{article}', 'ArticleController@show')->name('article.show');
 
 Route::get('/home', 'HomeController@index')->name('home');

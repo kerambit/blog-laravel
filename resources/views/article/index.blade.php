@@ -12,7 +12,7 @@
                 Date updated: {{ $article->updated_at->format('d.m.Y') }}
             </div>
             <div class="card-body">
-                <a href="{{ route('show', $article->id) }}"><h5 class="card-title">{{ $article->title }}</h5></a>
+                <a href="{{ route('article.show', $article->id) }}"><h5 class="card-title">{{ $article->title }}</h5></a>
                 <p class="card-text">{{ $article->description }}</p>
                 <span>{{ $article->slug }}</span>
             </div>
