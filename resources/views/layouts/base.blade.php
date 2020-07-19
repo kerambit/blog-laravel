@@ -28,11 +28,14 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('articles.index') }}">Admin panel</a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('category.index') }}">Categories</a>
+            </li>
             <li class="nav-item">
                 <a class="btn btn-primary" href="{{ route('articles.create') }}" role="button">Create new article</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
+            <li class="nav-item">
+                <a class="btn btn-primary" href="{{ route('category.create') }}" role="button">Create new category</a>
             </li>
             <!-- Authentication Links -->
             @guest

@@ -14,18 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
     Route::resource('articles', 'ArticleController');
+    Route::resource('category', 'CategoryController');
 });
-
-Route::resource('categories', 'CategoryController');
-
-Route::get('/', 'PublicController@index')->name('index');
-
-Route::get('/{article}', 'PublicController@show')->name('show');
 
 Route::get('/categories', 'CategoriesController@index')->name('categories.index');
 
 Route::get('/categories/{category}', 'CategoriesController@show')->name('categories.show');
+
+Route::get('/', 'PublicController@index')->name('index');
+
+Route::get('/{article}', 'PublicController@show')->name('show');
 
 Route::get('/home', 'HomeController@index')->name('home');

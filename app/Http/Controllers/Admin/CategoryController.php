@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Category;
+use App\Article;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,7 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+
+        return view('articles.category.index')->with('categories', $categories);
     }
 
     /**
@@ -24,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('articles.category.create');
     }
 
     /**
@@ -35,7 +39,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validData = $request->validate([
+            'name' => 'required|max:45|unique:App\Category,name',
+            'slug' => 'required|max:45',
+        ]);
+
+        $category = Category::create($validData);
+
+        return redirect()
+            ->route('category.index')
+            ->with('status', 'Category created!');
     }
 
     /**
@@ -46,7 +59,14 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $articles = Article::where('category_id', $category->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return view('articles.category.show')->with([
+            'articles' => $articles,
+            'category' => $category->name,
+        ]);
     }
 
     /**
@@ -57,7 +77,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('articles.category.edit')->with('category', $category);
     }
 
     /**
@@ -69,7 +89,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $validData = $request->validate([
+            'name' => 'required|max:45',
+            'slug' => 'required|max:45',
+        ]);
+
+        $category->update($validData);
+
+        return redirect()
+            ->route('category.index')
+            ->with('status', 'Category edited!');
     }
 
     /**
@@ -80,6 +109,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()
+            ->route('category.index')
+            ->with('status', 'Category deleted!');
     }
 }
