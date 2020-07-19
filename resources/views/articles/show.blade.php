@@ -9,13 +9,16 @@
             {{ session('status') }}
         </div>
     @endif
-    <div class="containter">
+    <div class="container">
         <div class="card">
             <div class="card-header">
                 Date created: {{ $article->created_at->format('d.m.Y') }}
             </div>
             <div class="card-header">
                 Date updated: {{ $article->updated_at->format('d.m.Y') }}
+            </div>
+            <div class="card-header">
+                Category: <a href="{{ route('category.show', $category->id) }}">{{ $category->name }}</a>
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{ $article->title }}</h5>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Article;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -59,7 +60,11 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view('articles.show')->with('article', $article);
+        $category = Category::find($article->category_id);
+
+        return view('articles.show')->with(
+            ['article' => $article,
+            'category' => $category]);
     }
 
     /**
