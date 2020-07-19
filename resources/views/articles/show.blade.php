@@ -18,7 +18,7 @@
                 Date updated: {{ $article->updated_at->format('d.m.Y') }}
             </div>
             <div class="card-header">
-                Category: <a href="{{ route('category.show', $category->id) }}">{{ $category->name }}</a>
+                Category: <a href="{{ route('category.show', $article->category->id) }}">{{ $article->category->name }}</a>
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{ $article->title }}</h5>

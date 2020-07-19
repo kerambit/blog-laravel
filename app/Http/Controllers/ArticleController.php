@@ -14,9 +14,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articlesList = Article::paginate(5);
+        $articles = Article::paginate(5);
 
-        return view('article.index')->with('articles', $articlesList);
+        return view('article.index')->with('articles', $articles);
     }
 
     /**
@@ -27,10 +27,8 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        $category = Category::find($article->category_id);
+        $article->load('category');
 
-        return view('article.show')->with(
-            ['article' => $article,
-            'category' => $category]);
+        return view('article.show')->with('article', $article);
     }
 }

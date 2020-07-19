@@ -29,7 +29,7 @@ class CategoriesController extends Controller
     public function show(Category $category)
     {
         $articles = Article::where('category_id', $category->id)
-            ->orderBy('created_at', 'desc')
+            ->latest()
             ->paginate(10);
 
         return view('categories.show')->with([

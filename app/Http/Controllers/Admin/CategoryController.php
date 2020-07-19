@@ -39,12 +39,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validData = $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|max:45|unique:App\Category,name',
             'slug' => 'required|max:45',
         ]);
 
-        $category = Category::create($validData);
+        $category = Category::create($validatedData);
 
         return redirect()
             ->route('category.index')
@@ -60,7 +60,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $articles = Article::where('category_id', $category->id)
-            ->orderBy('created_at', 'desc')
+            ->latest()
             ->paginate(10);
 
         return view('articles.category.show')->with([
@@ -89,12 +89,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $validData = $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|max:45',
             'slug' => 'required|max:45',
         ]);
 
-        $category->update($validData);
+        $category->update($validatedData);
 
         return redirect()
             ->route('category.index')

@@ -16,9 +16,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articlesList = Article::paginate(5);
+        $articles = Article::paginate(5);
 
-        return view('articles.index')->with('articles', $articlesList);
+        return view('articles.index')->with('articles', $articles);
     }
 
     /**
@@ -41,14 +41,14 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $validData = $request->validate([
+        $validatedData = $request->validate([
             'title' => 'required|max:45|unique:App\Article,title',
             'description' => 'required',
             'slug' => 'required|max:45',
             'category_id' => 'required'
         ]);
 
-        $article = Article::create($validData);
+        $article = Article::create($validatedData);
 
         return redirect()
             ->route('articles.index')
@@ -63,11 +63,9 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        $category = Category::find($article->category_id);
+        $article->load('category');
 
-        return view('articles.show')->with(
-            ['article' => $article,
-            'category' => $category]);
+        return view('articles.show')->with('article', $article);
     }
 
     /**
@@ -94,14 +92,14 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        $validData = $request->validate([
+        $validatedData = $request->validate([
             'title' => 'required|max:45',
             'description' => 'required',
             'slug' => 'required|max:45',
             'category_id' => 'required'
         ]);
 
-        $article->update($validData);
+        $article->update($validatedData);
 
         return redirect()
             ->route('articles.edit', $article)
