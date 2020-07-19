@@ -1,3 +1,8 @@
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
 <form action="{{ $route ?? route('category.store') }}" method="POST">
     @csrf
     @if (isset($category))

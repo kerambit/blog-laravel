@@ -17,6 +17,15 @@
             <label for="articleInputSlug">Article slug</label>
             <input type="text" id="articleInputSlug" name="slug" class="form-control" placeholder="Slug">
         </div>
+        <div class="form-group">
+            <label for="categorySelect">Select category</label>
+            <select class="form-control" id="categorySelect" name="category_id">
+                <option disabled selected>Choose category</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Create new article</button>
     </form>
 @endsection

@@ -28,7 +28,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        $categories = Category::all();
+
+        return view('articles.create')->with('categories', $categories);
     }
 
     /**
@@ -43,6 +45,7 @@ class ArticleController extends Controller
             'title' => 'required|max:45|unique:App\Article,title',
             'description' => 'required',
             'slug' => 'required|max:45',
+            'category_id' => 'required'
         ]);
 
         $article = Article::create($validData);
@@ -75,7 +78,11 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('articles.edit')->with('article', $article);
+        $categories = Category::all();
+
+        return view('articles.edit')->with([
+            'article' => $article,
+            'categories' => $categories]);
     }
 
     /**
@@ -91,6 +98,7 @@ class ArticleController extends Controller
             'title' => 'required|max:45',
             'description' => 'required',
             'slug' => 'required|max:45',
+            'category_id' => 'required'
         ]);
 
         $article->update($validData);

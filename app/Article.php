@@ -10,6 +10,7 @@ class Article extends Model
         'title',
         'description',
         'slug',
+        'category_id',
     ];
 
     /**
