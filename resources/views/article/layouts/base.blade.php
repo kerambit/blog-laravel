@@ -26,7 +26,7 @@
                 <a class="nav-link" href="{{ route('article.index') }}">Home</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('articles.index') }}">Admin panel</a>
+                <a class="nav-link" href="{{ route('admin.articles.index') }}">Admin panel</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>

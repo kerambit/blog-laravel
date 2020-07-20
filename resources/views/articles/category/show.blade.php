@@ -15,11 +15,11 @@
                 Date updated: {{ $article->updated_at->format('d.m.Y') }}
             </div>
             <div class="card-body">
-                <a href="{{ route('articles.show', $article->id) }}"><h5 class="card-title">{{ $article->title }}</h5></a>
+                <a href="{{ route('admin.articles.show', $article->id) }}"><h5 class="card-title">{{ $article->title }}</h5></a>
                 <p class="card-text">{{ $article->description }}</p>
                 <span>{{ $article->slug }}</span>
-                <a class="btn btn-primary" href="{{ route('articles.edit', $article->id) }}" role="button">Edit</a>
-                <form action="{{ route('articles.destroy', $article->id) }}" method="POST">
+                <a class="btn btn-primary" href="{{ route('admin.articles.edit', $article->id) }}" role="button">Edit</a>
+                <form action="{{ route('admin.category.destroy', $article->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
 

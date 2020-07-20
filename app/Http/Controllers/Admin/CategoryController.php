@@ -47,7 +47,7 @@ class CategoryController extends Controller
         Category::create($validatedData);
 
         return redirect()
-            ->route('category.index')
+            ->route('admin.category.index')
             ->with('status', 'Category created!');
     }
 
@@ -97,7 +97,7 @@ class CategoryController extends Controller
         $category->update($validatedData);
 
         return redirect()
-            ->route('category.index')
+            ->route('admin.category.index')
             ->with('status', 'Category edited!');
     }
 
@@ -112,7 +112,7 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect()
-            ->route('category.index')
+            ->route('admin.category.index')
             ->with('status', 'Category deleted!');
     }
 }

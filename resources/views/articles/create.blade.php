@@ -3,7 +3,7 @@
 
 @section('content')
     @include('includes.errors')
-    <form action="{{ route('articles.store') }}" method="POST">
+    <form action="{{ route('admin.articles.store') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="articleInputTitle">Article title</label>

@@ -12,11 +12,11 @@
         @foreach($categories as $category)
             <div class="card w-75">
                 <div class="card-body">
-                    <a href="{{ route('category.show', $category->id) }}">
+                    <a href="{{ route('admin.category.show', $category->id) }}">
                         <h5 class="card-title">{{ $category->name }}</h5>
                     </a>
-                    <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary">Edit</a>
-                    <form action="{{ route('category.destroy', $category->id) }}" method="POST">
+                    <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-primary">Edit</a>
+                    <form action="{{ route('admin.category.destroy', $category->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
 

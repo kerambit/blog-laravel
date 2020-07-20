@@ -8,7 +8,7 @@
         </div>
     @endif
     @include('includes.errors')
-    <form action="{{ route('articles.update', $article->id) }}" method="POST">
+    <form action="{{ route('admin.articles.update', $article->id) }}" method="POST">
         @csrf
         @method('PATCH')
         <div class="form-group">

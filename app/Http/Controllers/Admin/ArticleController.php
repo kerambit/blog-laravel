@@ -51,7 +51,7 @@ class ArticleController extends Controller
         Article::create($validatedData);
 
         return redirect()
-            ->route('articles.index')
+            ->route('admin.articles.index')
             ->with('status', 'Article created!');
     }
 
@@ -102,7 +102,7 @@ class ArticleController extends Controller
         $article->update($validatedData);
 
         return redirect()
-            ->route('articles.edit', $article)
+            ->route('admin.articles.edit', $article)
             ->with('status', 'Article edited!');
     }
 
@@ -117,7 +117,7 @@ class ArticleController extends Controller
         $article->delete();
 
         return redirect()
-            ->route('articles.index')
+            ->route('admin.articles.index')
             ->with('status', 'Article deleted!');
     }
 }

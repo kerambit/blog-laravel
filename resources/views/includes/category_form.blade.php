@@ -3,7 +3,7 @@
         {{ session('status') }}
     </div>
 @endif
-<form action="{{ $route ?? route('category.store') }}" method="POST">
+<form action="{{ $route ?? route('admin.category.store') }}" method="POST">
     @csrf
     @if (isset($category))
         @method('PATCH')
