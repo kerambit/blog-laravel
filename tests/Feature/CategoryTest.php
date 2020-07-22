@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ArticleControllerTest extends TestCase
+class CategoryControllerTest extends TestCase
 {
     /**
      * A basic feature test index method.
@@ -15,11 +15,11 @@ class ArticleControllerTest extends TestCase
      */
     public function testIndex()
     {
-        $response = $this->get(route('article.index'));
+        $response = $this->get(route('categories.index'));
 
-        $response->assertViewIs('article.index');
+        $response->assertViewIs('categories.index');
 
-        $response->assertViewHas('articles');
+        $response->assertViewHas('categories');
 
         $response->assertStatus(200);
     }
@@ -31,13 +31,13 @@ class ArticleControllerTest extends TestCase
      */
     public function testShow()
     {
-        $key = \App\Article::inRandomOrder()->first();
+        $key = \App\Category::inRandomOrder()->first();
 
-        $response = $this->get(route('article.show', $key->id));
+        $response = $this->get(route('categories.show', $key->id));
 
-        $response->assertViewIs('article.show');
+        $response->assertViewIs('categories.show');
 
-        $response->assertViewHas('article');
+        $response->assertViewHasAll(['articles', 'category']);
 
         $response->assertStatus(200);
     }
