@@ -5,9 +5,12 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Article;
 
 class ArticleControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic feature test index method.
      *
@@ -31,7 +34,9 @@ class ArticleControllerTest extends TestCase
      */
     public function testShow()
     {
-        $key = \App\Article::inRandomOrder()->first();
+        factory(Article::class, 10)->create();
+
+        $key = Article::inRandomOrder()->first();
 
         $response = $this->get(route('article.show', $key->id));
 
