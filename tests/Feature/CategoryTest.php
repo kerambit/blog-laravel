@@ -5,9 +5,12 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Category;
 
 class CategoryControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic feature test index method.
      *
@@ -31,7 +34,9 @@ class CategoryControllerTest extends TestCase
      */
     public function testShow()
     {
-        $key = \App\Category::inRandomOrder()->first();
+        factory(Category::class, 10)->create();
+
+        $key = Category::inRandomOrder()->first();
 
         $response = $this->get(route('categories.show', $key->id));
 
