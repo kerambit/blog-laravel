@@ -10,35 +10,7 @@ use App\Category;
 
 class AdminCategoryTest extends TestCase
 {
-    /**
-     * A basic feature test to make sure that we can't use admin controller without auth.
-     *
-     * @return void
-     */
-    public function testLoginForm()
-    {
-        $response = $this->get(route('admin.category.index'));
-
-        $response->assertRedirect(route('login'));
-
-        $response->assertStatus(302);
-    }
-
-    /**
-     * A feature test for auth to use admin controller.
-     *
-     * @return void
-     */
-    public function testEnterLoginForm()
-    {
-        $user = factory(User::class)->make();
-
-        $response = $this->actingAs($user)->get(route('login'));
-
-        $this->assertAuthenticatedAs($user);
-
-        $response->assertRedirect('/');
-    }
+    use RefreshDatabase;
 
     /**
      * A feature test index method.
@@ -47,7 +19,23 @@ class AdminCategoryTest extends TestCase
      */
     public function testCategoryIndex()
     {
-        $this->testEnterLoginForm();
+        $response = $this->get(route('admin.category.index'));
+
+        $response->assertRedirect(route('login'));
+
+        $response->assertStatus(302);
+
+        $user = factory(User::class)->make();
+
+        unset($response);
+
+        $response = $this->actingAs($user)->get(route('login'));
+
+        $this->assertAuthenticatedAs($user);
+
+        $response->assertRedirect('/');
+
+        unset($response);
 
         $response = $this->get(route('admin.category.index'));
 
@@ -65,7 +53,25 @@ class AdminCategoryTest extends TestCase
      */
     public function testCategoryShow()
     {
-        $this->testCategoryIndex();
+        $response = $this->get(route('admin.category.index'));
+
+        $response->assertRedirect(route('login'));
+
+        $response->assertStatus(302);
+
+        $user = factory(User::class)->make();
+
+        unset($response);
+
+        $response = $this->actingAs($user)->get(route('login'));
+
+        $this->assertAuthenticatedAs($user);
+
+        $response->assertRedirect('/');
+
+        unset($response);
+
+        factory(Category::class, 10)->create();
 
         $category = Category::inRandomOrder()->first();
 
@@ -85,7 +91,23 @@ class AdminCategoryTest extends TestCase
      */
     public function testCategoryCreate()
     {
+        $response = $this->get(route('admin.category.index'));
+
+        $response->assertRedirect(route('login'));
+
+        $response->assertStatus(302);
+
         $user = factory(User::class)->make();
+
+        unset($response);
+
+        $response = $this->actingAs($user)->get(route('login'));
+
+        $this->assertAuthenticatedAs($user);
+
+        $response->assertRedirect('/');
+
+        unset($response);
 
         $category = factory(Category::class)->make();
         $category = $category->toArray();
@@ -104,6 +126,26 @@ class AdminCategoryTest extends TestCase
      */
     public function testCategoryUpdate()
     {
+        $response = $this->get(route('admin.category.index'));
+
+        $response->assertRedirect(route('login'));
+
+        $response->assertStatus(302);
+
+        $user = factory(User::class)->make();
+
+        unset($response);
+
+        $response = $this->actingAs($user)->get(route('login'));
+
+        $this->assertAuthenticatedAs($user);
+
+        $response->assertRedirect('/');
+
+        unset($response);
+
+        factory(Category::class, 10)->create();
+
         $category = Category::inRandomOrder()->first();
 
         $data = factory(Category::class)->make();
