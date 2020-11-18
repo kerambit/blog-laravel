@@ -36,9 +36,9 @@ class CategoryControllerTest extends TestCase
     {
         factory(Category::class, 10)->create();
 
-        $key = Category::inRandomOrder()->first();
+        $category = Category::inRandomOrder()->first();
 
-        $response = $this->get(route('categories.show', $key->id));
+        $response = $this->get(route('categories.show', $category));
 
         $response->assertViewIs('categories.show');
 
