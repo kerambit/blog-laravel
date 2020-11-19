@@ -10,7 +10,7 @@ use App\Category;
 
 class AdminCategoryTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
 
     /**
      * A feature test index method.
@@ -109,11 +109,12 @@ class AdminCategoryTest extends TestCase
 
         unset($response);
 
-        $category = factory(Category::class)->make();
-        $category = $category->toArray();
+        $category = [
+          'name' => $this->faker->word,
+          'slug' => substr($this->faker->slug, 0, 40)
+        ];
 
         $response = $this->actingAs($user)
-            ->withoutMiddleware()
             ->post(route('admin.category.store'), $category);
 
         $response->assertRedirect(route('admin.category.index'));
